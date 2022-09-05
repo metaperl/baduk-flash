@@ -1,0 +1,1 @@
+alert(JSON.stringify(game_url, undefined, 2));

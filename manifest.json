@@ -1,0 +1,14 @@
+{
+    "name": "Baduk Flash",
+    "version": "1.0.0",
+    "description": "Create Anki flashcards from OGS baduk positions.",
+    "manifest_version": 3,
+    "author": "Terrence Brannon",
+    "action":{
+        "default_popup": "index.html",
+        "default_title": "Baduk Flash"
+    },
+    "permissions": [
+        "tabs"
+    ] 
+}
