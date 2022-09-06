@@ -4,11 +4,13 @@
     "description": "Create Anki flashcards from OGS baduk positions.",
     "manifest_version": 3,
     "author": "Terrence Brannon",
-    "action":{
-        "default_popup": "index.html",
-        "default_title": "Baduk Flash"
-    },
     "permissions": [
-        "tabs"
-    ] 
+        "tabs",
+        "activeTab",
+        "scripting"
+    ] ,
+    "action":{},
+    "background": {
+        "service_worker": "service_worker.js"
+      }
 }

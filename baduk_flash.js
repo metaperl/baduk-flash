@@ -17,6 +17,13 @@ function downloadBase64File(contentType, base64Data, fileName) {
   downloadLink.click();
 }
 
+function element_contains(selector, text) {
+    var elements = document.querySelectorAll(selector);
+    return Array.prototype.filter.call(elements, function(element){
+      return RegExp(text).test(element.textContent);
+    });
+ }
+
 class BadukFlash {
     constructor(x, y) {
         this.url = x;
@@ -24,10 +31,7 @@ class BadukFlash {
     sing() {
         return `${this.name} can sing`;
     }
-    dance() {
-        return `${this.name} can dance`;
-    }
-     fetchData() {
+    old_fetchURL() {
     
         chrome.tabs.query({url: "*://*.online-go.com/*"}, function(results) {
             this.url = results[0].url
@@ -39,8 +43,30 @@ class BadukFlash {
             // return x.url;
         });
     }
+    fetch_url() {
+        this.url = window.location.href
+        alert(this.url)
+    }
+    toggleAI() {
+        let dock = document.getElementsByClassName('Dock')[0]
+        let anchors = dock.getElementsByTagName('a')
+        anchors[3].click();
+    }
+
+    current_tab() {
+        chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+            var tab = tabs[0];
+            var title = tab.title;
+        
+            alert("Title: " + title);
+        });
+    }
 }
 
 let bf = new BadukFlash("Bingo", "Hairy");
-bf.fetchData()
+bf.fetch_url()
+//bf.current_tab()
+bf.toggleAI()
+
+
 
