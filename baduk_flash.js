@@ -1,12 +1,12 @@
 
 // https://stackoverflow.com/questions/6887183/how-to-take-screenshot-of-a-div-with-javascript
 
-function getScreenShot(){
-    let c = this.elem.nativeElement.querySelector('.chartContainer'); // or document.getElementById('canvas');
+function getScreenShot(elem){
+    let c = elem;
     html2canvas(c).then((canvas)=>{
       var t = canvas.toDataURL().replace("data:image/png;base64,", "");
-      this.downloadBase64File('image/png',t,'image');
-    })
+      this.downloadBase64File('image/png',t,'image4');
+    });
   }
 
 function downloadBase64File(contentType, base64Data, fileName) {
@@ -53,13 +53,9 @@ class BadukFlash {
         anchors[3].click();
     }
 
-    current_tab() {
-        chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-            var tab = tabs[0];
-            var title = tab.title;
-        
-            alert("Title: " + title);
-        });
+    snap_screenshot() {
+        let c = document.getElementsByTagName('canvas')[0];
+        getScreenShot(c);
     }
 }
 
@@ -67,6 +63,7 @@ let bf = new BadukFlash("Bingo", "Hairy");
 bf.fetch_url()
 //bf.current_tab()
 bf.toggleAI()
+bf.snap_screenshot()
 
 
 

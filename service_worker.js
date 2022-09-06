@@ -6,7 +6,7 @@ chrome.action.onClicked.addListener((tab) => {
       chrome.scripting.executeScript({
         target: { tabId: tab.id },
       //  function: go
-      files: ['baduk_flash.js'],
+      files: [ 'html2canvas.js', 'baduk_flash.js'],
       });
     }
   });
