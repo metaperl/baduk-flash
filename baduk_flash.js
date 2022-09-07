@@ -17,53 +17,42 @@ function downloadBase64File(contentType, base64Data, fileName) {
   downloadLink.click();
 }
 
-function element_contains(selector, text) {
-    var elements = document.querySelectorAll(selector);
-    return Array.prototype.filter.call(elements, function(element){
-      return RegExp(text).test(element.textContent);
-    });
- }
-
 class BadukFlash {
     constructor(x, y) {
         this.url = x;
     }
-    sing() {
-        return `${this.name} can sing`;
-    }
-    old_fetchURL() {
-    
-        chrome.tabs.query({url: "*://*.online-go.com/*"}, function(results) {
-            this.url = results[0].url
-            //alert(this.url)
-            document.getElementById("game_url").innerHTML=this.url;
-    
-            // alert(results);
-    
-            // return x.url;
-        });
-    }
+
     fetch_url() {
         this.url = window.location.href
         alert(this.url)
     }
+
     toggleAI() {
-        let dock = document.getElementsByClassName('Dock')[0]
-        let anchors = dock.getElementsByTagName('a')
-        anchors[3].click();
+        document.dispatchEvent(new KeyboardEvent('keydown', {
+            key: 'i',
+            keyCode: 73,
+            shiftKey: true
+        }))
     }
 
-    snap_screenshot() {
-        let c = document.getElementsByTagName('canvas')[0];
+    old_snap_screenshot() {
+        let c = document.getElementsByTagName('canvas')[23]; // stone layer
+        // c = document.getElementsByTagName('canvas')[22]; // white stone layer
+        // c = document.getElementsByTagName('canvas')[21]; // white stone layer
+
+        // https://fjolt.com/article/html-canvas-save-as-image
+        getScreenShot(c);
+    }
+    snapScreenshot(){
+        let c = document.getElementsByTagName('body')[0];
         getScreenShot(c);
     }
 }
 
-let bf = new BadukFlash("Bingo", "Hairy");
+let bf = new BadukFlash("Cho", "Chikun");
 bf.fetch_url()
-//bf.current_tab()
 bf.toggleAI()
-bf.snap_screenshot()
+bf.snapScreenshot()
 
 
 
